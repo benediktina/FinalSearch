@@ -8,3 +8,5 @@ realizuoti paprasčius rūšiavimo algoritmus: **selection, insertion, bubble**:
 -selection
 -insertion
 -bubble
+
+Arnoldas bus atsakingas uz heapsort
