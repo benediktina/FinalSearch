@@ -8,3 +8,5 @@ realizuoti paprasčius rūšiavimo algoritmus: **selection, insertion, bubble**:
 -selection
 -insertion
 -bubble
+#Atsakingas už:
+** greičiausiai nieko :D **
