@@ -8,3 +8,6 @@ realizuoti paprasčius rūšiavimo algoritmus: **selection, insertion, bubble**:
 -selection
 -insertion
 -bubble
+
+Arvydas bus atsakingas:
+ uz kazka svarbaus!!!
