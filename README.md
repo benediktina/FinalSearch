@@ -8,3 +8,6 @@ realizuoti paprasčius rūšiavimo algoritmus: **selection, insertion, bubble**:
 -selection
 -insertion
 -bubble
+
+#Remigijus bus atsakingas:
+Už darbų priežiūrą ir jų suliejimą.
