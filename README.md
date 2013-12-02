@@ -9,4 +9,6 @@ realizuoti paprasčius rūšiavimo algoritmus: **selection, insertion, bubble**:
 -insertion
 -bubble
 
-simvar planuoja realizuoti maino struktura ir prideti  Piramidini (kruvos) rušiavimo algoritma.
+Simvar:
+Simvar planuoja realizuoti maino struktura ir prideti  Piramidini (kruvos) rušiavimo algoritma.
+Papildomai itraukiau Spartuji  ir Suliejimo(salajos) rušiavimo algoritmus.

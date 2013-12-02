@@ -10,6 +10,13 @@ template <class T> void shiftRight(T *, int, int, int&, int& );
 template <class T> void heapify(T *, int, int, int&, int&);
 template <class T> void heapSort(T *, int, int, int&, int&);
 //-----------------------
+template <class T> int partition(T * , int, int, int&, int&);
+template <class T> void quicksort(T * , int, int, int&, int&);
+//-----------------------
+template <class T> void mergesort(T *,T *, int, int , int&, int&);
+template <class T> void merge(T *,T *, int, int, int, int&, int&);
+//-----------------------
+
 using namespace std;
 int main(int argc, char *argv[])
 {
@@ -69,8 +76,8 @@ int main(int argc, char *argv[])
     else if(r==2) insertion(a,0,N-1,L,S);
         else if (r==3) bubble(a,0,N-1,L,S);
              else if (r==4) heapSort(a,0,N-1,L,S);
-                  else if (r==5) cout<<"Nebaigta"<<endl;
-                       else if (r==6) cout<<"Nebaigta"<<endl;
+                  else if (r==5) quicksort(a,0,N-1,L,S);
+                       else if (r==6) mergesort(a,b,0,N-1,L,S);
                   else cout<<"Neteisingai nurodytas rusiavimo budas"<< endl;
       
     cout << "Surusiuotas skaiciu masyvas yra:" << endl;
@@ -85,15 +92,15 @@ int main(int argc, char *argv[])
     cout << endl;
     return 0;
 }
-// Sukeiƒ?ia elementus vietomis
+// Sukeiƒçia elementus vietomis
 template <class T>
   void exch(T &A, T &B)
     { T t = A ; A = B; B = t; }
-// Sukeiƒ?ia elementus vietomis tik jei patenkinta sƒÖlyga
+// Sukeiƒçia elementus vietomis tik jei patenkinta sƒÖlyga
 template <class T>
   void compexch(T &A, T &B, int &S)
     { if (B < A) {exch(A, B); S++;} }
-// I≈?rinkimo algoritmo realizacija
+// I≈°rinkimo algoritmo realizacija
 template <class T>
 
   void selection(T a[], int l, int r, int &L, int &S)
@@ -145,7 +152,7 @@ void bubble(T a[], int l, int r, int &L, int &S)
   }
 
 //-------------------------------------------------------
-//Piramidini (kruvos) ruiavimo algoritma (angl. heap sort)
+//Piramidini (kruvos) ruöiavimo algoritma (angl. heap sort)
 //-------------------------------------------------------
 template <class T>
 void shiftRight(T a[], int l, int r, int &L, int &S)
@@ -203,5 +210,105 @@ void heapSort(T a[], int l, int r, int &L, int &S)
     }
     return;
 }
-//-------------------------------------------------------------
-//-------------------------------------------------------------
+//-------------------------------------------------------
+//Spartuji ruöiavimo algoritma (angla quick sort).
+//-------------------------------------------------------
+// The partition function
+template <class T>
+int partition(T a[], int l, int r, int &L, int &S)
+{
+    int pivot = a[r];
+
+    while ( l < r )
+    {
+        while ( a[l] < pivot )
+            l++;
+
+        while ( a[r] > pivot )
+            r--;
+
+        if ( a[l] == a[r] )
+            l++;
+        else if ( l < r )
+        {
+            int tmp = a[l];
+            a[l] = a[r];
+            a[r] = tmp;
+            L++;
+        }
+        S++;
+    }
+    return r;
+}
+
+// The quicksort recursive function
+template <class T>
+void quicksort(T a[], int l, int r, int &L, int &S )
+{
+    if ( l < r )
+    {
+        int j = partition(a, l, r,L,S);
+        quicksort(a, l, j-1,L,S);
+        quicksort(a, j+1, r,L,S);
+    }
+}
+//-------------------------------------------------------
+//Suliejimo(salajos) ruöiavimo algoritma (angl. merge sort).
+//-------------------------------------------------------
+template <class T>
+void mergesort(T a[],T b[], int l, int r, int &L, int &S)
+{
+    int pivot;
+    if(l<r)
+    {
+        pivot=(l+r)/2;
+        mergesort(a,b,l,pivot,L,S);
+        mergesort(a,b,pivot+1,r,L,S);
+        merge(a,b,l,pivot,r,L,S);
+    }
+}
+template <class T>
+void merge(T a[],T b[], int l, int pivot, int r, int &L, int &S)
+{
+    int h,i,j,k;
+    h=l;
+    i=l;
+    j=pivot+1;
+
+    while((h<=pivot)&&(j<=r))
+    {
+        if(a[h]<=a[j])
+        {
+            b[i]=a[h];
+            h++;
+            
+        }
+        else
+        {
+            b[i]=a[j];
+            j++;
+            L++;
+        }
+        S++;
+        i++;
+    }
+    if(h>pivot)
+    {
+        for(k=j; k<=r; k++)
+        {
+            b[i]=a[k];
+            i++;
+        }
+    }
+    else
+    {
+        for(k=h; k<=pivot; k++)
+        {
+            b[i]=a[k];
+            i++;
+        }
+        
+    }
+    S++;
+    for(k=l; k<=r; k++) a[k]=b[k];
+}
