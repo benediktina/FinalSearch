@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {cout<<"N - masyvo dydis."<<endl<<""<<endl<<"KaDaryt - kokia masyvo sugeneravimo tvarka:"<<endl<<
       "  1 - sutvarkytas masyvas nou maziausio iki didziausio,"<<endl<<
-      "  2 - atsitiktinai sugeneruotas masyvas" <<endl<<
+      "  2 - atsitiktinai sugeneruotas masyvass" <<endl<<
       "  3 - sutvarkytas masyvas nou didziausio iki maziausio." <<endl<<""
       <<endl<<
       "Kuris - Kuris algoritmas bus naudojamas:"<<endl<<
