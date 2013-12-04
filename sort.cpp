@@ -9,6 +9,7 @@ template <class T> void marge(T *, int, int);
 using namespace std;
 int main(int argc, char *argv[])
 {
+<<<<<<< HEAD
     cout<<"N - masyvo dydis."<<endl<<""<<endl<<"KaDaryt - kokia masyvo sugeneravimo tvarka:"<<endl<<
       "  1 - sutvarkytas masyvas nou maziausio iki didziausio,"<<endl<<
       "  2 - atsitiktinai sugeneruotas masyvas" <<endl<<
@@ -27,6 +28,9 @@ int main(int argc, char *argv[])
    cin>>N; cin>>KaDaryt; cin>>kuris;
    int *a = new int[N];
     if (KaDaryt==2) // Atsitiktinai sugeneruoja N skaičių intervale: 1,...,1000.
+
+   
+>>>>>>> bbb17b291fcd78cd3c3b65bf720c54daa5692743
       for (i = 0; i < N; i++)
         a[i] = 1000*(1.0*rand()/RAND_MAX);
       else if (KaDaryt==1) // Atsitiktinai sugeneruoja N skaičių intervale: 1,...,1000.
@@ -37,15 +41,24 @@ int main(int argc, char *argv[])
         a[i] = N - i;
     else // Savo nuožiūra įvedame skaičius. Norėdami baigti įvedimą, įvedame bet kokį simbolį - ne skaičių.
       { N = 0; while (cin >> a[N]) N++; }
+
     cout << "Įvestas skaičių masyvas yra:" << endl;
     for (i = 0; i < N; i++) cout << a[i] << " ";
     cout << endl;
 
-    if(kuris == 1)selection(a, 0, N-1);
+<<<<<<< HEAD
+   
+
+	if(kuris == 1)selection(a, 0, N-1);
+>>>>>>> bbb17b291fcd78cd3c3b65bf720c54daa5692743
     else if (kuris == 2) insertion (a, 0, N-1);
     else if (kuris == 3) bubble (a, 0, N-1);
     else marge(a, 0, N-1);
 
+<<<<<<< HEAD
+
+   
+>>>>>>> bbb17b291fcd78cd3c3b65bf720c54daa5692743
     cout << "Surūšiuotas skaičių masyvas yra:" << endl;
     for (i = 0; i < N; i++) cout << a[i] << " ";
     cout << endl;
@@ -97,8 +110,11 @@ void bubble(T a[], int l, int r)
       for (int j = r; j > i; j--)
         compexch(a[j-1], a[j]);
   }
+<<<<<<< HEAD
 
-template <class T>
+
+  template <class T>
+>>>>>>> bbb17b291fcd78cd3c3b65bf720c54daa5692743
 void marge(T a[], int l, int r)
 {
  int i = 0;
@@ -154,3 +170,7 @@ void marge(T a[], int l, int r)
   }
  }
 }
+<<<<<<< HEAD
+
+
+>>>>>>> bbb17b291fcd78cd3c3b65bf720c54daa5692743
