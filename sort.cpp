@@ -1,10 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
+#include <assert.h>
 template <class T> void exch(T &, T &);
 template <class T> void compexch(T &, T &);
 template <class T> void selection(T *, int, int);
 template <class T> void insertion(T *, int, int);
 template <class T> void bubble(T *, int, int);
+template <class T> void heapsort(T *, int);
 using namespace std;
 int main(int argc, char *argv[])
 {
@@ -18,7 +20,7 @@ int main(int argc, char *argv[])
     cout << "Įvestas skaičių masyvas yra:" << endl;
     for (i = 0; i < N; i++) cout << a[i] << " ";
     cout << endl;
-    selection(a, 0, N-1);
+    heapsort(a, N-1);
     cout << "Surūšiuotas skaičių masyvas yra:" << endl;
     for (i = 0; i < N; i++) cout << a[i] << " ";
     cout << endl;
@@ -60,3 +62,74 @@ void bubble(T a[], int l, int r)
       for (int j = r; j > i; j--)
         compexch(a[j-1], a[j]);
   }
+
+//Heapsort algoritmas
+void shiftRight(int* arr, int low, int high)
+{
+    int root = low;
+    while ((root*2)+1 <= high)
+    {
+        int leftChild = (root * 2) + 1;
+        int rightChild = leftChild + 1;
+        int swapIdx = root;
+        /*Check if root is less than left child*/
+        if (arr[swapIdx] < arr[leftChild])
+        {
+            swapIdx = leftChild;
+        }
+        /*If right child exists check if it is less than current root*/
+        if ((rightChild <= high) && (arr[swapIdx] < arr[rightChild]))
+        {
+            swapIdx = rightChild;
+        }
+        /*Make the biggest element of root, left and right child the root*/
+        if (swapIdx != root)
+        {
+            int tmp = arr[root];
+            arr[root] = arr[swapIdx];
+            arr[swapIdx] = tmp;
+            /*Keep shifting right and ensure that swapIdx satisfies
+            heap property aka left and right child of it is smaller than
+            itself*/
+            root = swapIdx;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return;
+}
+
+void heapify(int* arr, int low, int high)
+{
+    /*Start with middle element. Middle element is chosen in
+    such a way that the last element of array is either its
+    left child or right child*/
+    int midIdx = (high - low -1)/2;
+    while (midIdx >= 0)
+    {
+        shiftRight(arr, midIdx, high);
+        --midIdx;
+    }
+    return;
+}
+
+template <class T>
+void heapsort(T a[], int l)
+{
+    assert(a);
+    assert(l > 0);
+    heapify(a, 0, l-1);
+    int high = l - 1;
+    while (high > 0)
+    {
+        int tmp = a[high];
+        a[high] = a[0];
+        a[0] = tmp;
+        --high;
+        /*Ensure heap property on remaining elements*/
+        shiftRight(a, 0, high);
+    }
+    return;
+}
